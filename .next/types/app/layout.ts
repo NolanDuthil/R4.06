@@ -1,4 +1,4 @@
-// File: P:\MMI 2\S4\R4.06\EX1\app\layout.js
+// File: C:\Users\duthil3\Documents\GitHub\R4.06---Tic-Tac-Toe\app\layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
