@@ -1,5 +1,5 @@
 function Item({text, check}) {
-    let checkmark = check ? "v" : "\u00A0\u00A0\u00A0";
+    let checkmark = check ? "✓" : "\u00A0\u00A0\u00A0";
     return (
         <li className="advantage">
             <span className="advantage__checkmark">{checkmark}</span>
@@ -8,7 +8,7 @@ function Item({text, check}) {
     );
 }
 
-export default function Plan({label, price,advantages}) {
+export default function Plan({label, price, advantages}) {
     return (
         <div className="offer__box">
             <div className="offer-box__header">
@@ -20,6 +20,7 @@ export default function Plan({label, price,advantages}) {
                     <Item key={index} text={item.text} check={item.check} />
                 ))}
             </ul>
+            <button className="header__button btn--hero__nav"> </button>
         </div>
     )
 }

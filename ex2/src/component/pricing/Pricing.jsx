@@ -22,7 +22,7 @@ export function Pricing({title, desc, plans}) {
 
                 <div class="box">
                     {plans.map((plan, index) => (
-                        <Plan key={index} label ={plan.name} price={plan.price} advantage={plan.advantage}/>
+                        <Plan key={index} label ={plan.name} price={plan.price} advantage={plan.advantages}/>
                     ))}
                 </div>
             </div>
