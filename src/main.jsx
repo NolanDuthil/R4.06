@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from './routes/root.jsx';
 import About from './routes/about.jsx';
 import Buy, {loader as buyLoader} from './routes/buy.jsx';
+import ErrorPage from './ui/ErrorPage/index.jsx';
+import OurTeams, {loader as OurTeamLoader} from './routes/ourTeams.jsx';
 
 import './index.css';
 
@@ -13,6 +15,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: < ErrorPage/>,
     children: [
       {
         path: '/buy',
@@ -22,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />
+      },
+      {
+        path: '/team/:teamName',
+        element: <OurTeams />,
+        loader: OurTeamLoader,
       }
     ]
   },
