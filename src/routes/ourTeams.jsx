@@ -1,12 +1,14 @@
-import { useLoaderData} from "react-router-dom";
+import { Await, defer, useLoaderData } from "react-router-dom";
 import Teams from '../ui/Team';
 import { fetchOurTeams, fetchTestimonialData } from "../lib/loaders";
 import Testimonial from "../ui/Testimonial";
+import { Suspense } from 'react';
+import TeamSkeleton from "../ui/Team/TeamSkeleton"
 
-export async function loader ({params}) {
-    let teamData = await fetchOurTeams(params.teamName);
+export async function loader({ params }) {
+    let teamData = fetchOurTeams(params.teamName);
     let testiData = await fetchTestimonialData(params.teamName);
-    return {team:teamData, testimonial:testiData};
+    return defer({ team: teamData, testimonial: testiData });
 }
 
 export default function OurTeams() {
@@ -15,8 +17,12 @@ export default function OurTeams() {
 
     return (
         <>
-            <Teams {...data.team}/>
-            <Testimonial data={data.testimonial}/>
+            <Suspense fallback={<TeamSkeleton />}>
+                <Await resolve={data.team} errorElement={<div>Failed</div>} >
+                    {teamData => <Teams {...teamData} />}
+                </Await>
+            </Suspense>
+            <Testimonial data={data.testimonial} />
         </>
     )
 }
